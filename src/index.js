@@ -1,6 +1,5 @@
-// DO WHATEVER YOU WANT HERE
-
 const createEnumerableProperty = (propName) => {return propName};
+
 const createNotEnumerableProperty = (propName) => {
 	Object.defineProperty(Object.prototype,propName,{
 		get: function() { return oldValue; },
@@ -11,8 +10,8 @@ const createNotEnumerableProperty = (propName) => {
 };
 
 const createProtoMagicObject = () => {
-	
 };
+
 var cont=0;
 const incrementor =function(){
 	cont++;
@@ -20,11 +19,17 @@ const incrementor =function(){
 		return cont;
 	}
 	return incrementor;
-
 };
+
+let asyncCont=0;
 const asyncIncrementor = () => {
+	let promise= new Promise((resolve)=>{
+		resolve(++asyncCont);
+	})
+	return promise;
 
 };
+
 const createIncrementer = () => {
 
 };
@@ -58,6 +63,9 @@ const getDeepPropertiesCount = (obj) => {
 
 };
 const createSerializedObject = () => {
+	var obj= new Object;
+	
+	return JSON.parse(JSON.stringify(obj));
 
 };
 
