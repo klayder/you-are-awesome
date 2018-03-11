@@ -10,6 +10,9 @@ const createNotEnumerableProperty = (propName) => {
 };
 
 const createProtoMagicObject = () => {
+	let tempFunc = function(){};
+	tempFunc.prototype=tempFunc.__proto__;
+	return tempFunc;
 };
 
 var cont=0;
@@ -31,7 +34,15 @@ const asyncIncrementor = () => {
 };
 
 const createIncrementer = () => {
-
+	
+	function* inc(){
+		cont=1;
+		while(1){
+			yield cont++;			
+	}}
+	
+	return inc();
+	
 };
 
 // return same argument not earlier than in one second, and not later, than in two
@@ -63,10 +74,8 @@ const getDeepPropertiesCount = (obj) => {
 
 };
 const createSerializedObject = () => {
-	var obj= new Object;
+	return new String("test");
 	
-	return JSON.parse(JSON.stringify(obj));
-
 };
 
 const sortByProto = (arr) => {
